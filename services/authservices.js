@@ -30,7 +30,7 @@ const services = {
         await email(value.email , `<h2>Hello ${value.firstname} ${value.lastname},</h2> <p> Tiny Url account has been created Successfully. The below Link to Activate your Tiny Url account.</p>  
       <span><a href="https://goofy-perlman-361ca1.netlify.app/active/${registereduser.insertedId}">Click here</a> to activate your account</span>
       <P>(or) Use the below link</p>
-      <p>https://goofy-perlman-361ca1.netlify.app/active/${registereduser.insertedId}</p>`, "Activate your book keeping Account");
+      <p>https://goofy-perlman-361ca1.netlify.app/active/${registereduser.insertedId}</p>`, "Activate your Tiny Url Account");
 
         res.status(201).send({message:"registered Succesfully"});
     }
