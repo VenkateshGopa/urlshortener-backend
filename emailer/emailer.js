@@ -5,13 +5,13 @@ const mailer = (email, code , sub) => {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "packatest@gmail.com",
-        pass: "Packa@12345",
+        user: "tinyurlshortner@gmail.com",
+        pass: "Tiny@1999",
       },
     });
 
     var mailOptions = {
-      from: "packatest@gmail.com",
+      from: "tinyurlshortner@gmail.com",
       to: email,
       subject:  `${sub}`,
       // text: 'That was easy!'
