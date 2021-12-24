@@ -99,9 +99,9 @@ const services = {
       
 //       await email(value.email , `https://goofy-perlman-361ca1.netlify.app/${user._id}/${code}`);
       await email(value.email , `<h2>Hello ${user.firstname} ${user.lastname},</h2> <p> A request has been received to change the password for your account. The below Link to reset your account password is only valid for 30Minutes.</p>  
-      <span><a href="https://goofy-perlman-361ca1.netlify.app/${user._id}/${code}">Click here</a> to reset your password</span>
+      <span><a href="https://goofy-perlman-361ca1.netlify.app/auth/${user._id}/${code}">Click here</a> to reset your password</span>
       <P>(or) Use the below link</p>
-      <p>https://goofy-perlman-361ca1.netlify.app/${user._id}/${code}</p>`, "Reset your Tiny Url account Password");
+      <p>https://goofy-perlman-361ca1.netlify.app/auth/${user._id}/${code}</p>`, "Reset your Tiny Url account Password");
       await mongo.db.collection('userdetails').updateOne({email:value.email} , {$set:{code: code, time:(value.time +1800000)} })
       res.send({message:"email send successfully"})
     }
