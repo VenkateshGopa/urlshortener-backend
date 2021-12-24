@@ -26,7 +26,11 @@ const services = {
         const registereduser = await mongo.db.collection('userdetails').insertOne(value);
         
         //sending email
-        await email(value.email , `https://goofy-perlman-361ca1.netlify.app/active/${registereduser.insertedId}`);
+//         await email(value.email , `https://goofy-perlman-361ca1.netlify.app/active/${registereduser.insertedId}`);
+        await email(value.email , `<h2>Hello ${value.firstname} ${value.lastname},</h2> <p> Tiny Url account has been created Successfully. The below Link to Activate your Tiny Url account.</p>  
+      <span><a href="https://goofy-perlman-361ca1.netlify.app/active/${registereduser.insertedId}">Click here</a> to activate your account</span>
+      <P>(or) Use the below link</p>
+      <p>https://goofy-perlman-361ca1.netlify.app/active/${registereduser.insertedId}</p>`, "Activate your book keeping Account");
 
         res.status(201).send({message:"registered Succesfully"});
     }
@@ -93,7 +97,11 @@ const services = {
       if(!user) return res.status(403).send({error:"Email not registered"})
       const code = Math.random().toString(36).slice(-6);
       
-      await email(value.email , `https://goofy-perlman-361ca1.netlify.app/${user._id}/${code}`);
+//       await email(value.email , `https://goofy-perlman-361ca1.netlify.app/${user._id}/${code}`);
+      await email(value.email , `<h2>Hello ${user.firstname} ${user.lastname},</h2> <p> A request has been received to change the password for your account. The below Link to reset your account password is only valid for 30Minutes.</p>  
+      <span><a href="https://goofy-perlman-361ca1.netlify.app/${user._id}/${code}">Click here</a> to reset your password</span>
+      <P>(or) Use the below link</p>
+      <p>https://goofy-perlman-361ca1.netlify.app/${user._id}/${code}</p>`, "Reset your Tiny Url account Password");
       await mongo.db.collection('userdetails').updateOne({email:value.email} , {$set:{code: code, time:(value.time +1800000)} })
       res.send({message:"email send successfully"})
     }
